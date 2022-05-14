@@ -1,0 +1,22 @@
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 20rem;
+    border: 0.3rem firebrick solid;
+    border-radius: 0.5rem;
+}
+
+.pokemon .top {
+    display: flex;
+}
+
+.pokemon .top > * {
+    flex: 1;
+}
+
+.pokemon .types {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
