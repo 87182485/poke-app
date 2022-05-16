@@ -1,11 +1,24 @@
+import { useEffect, useState } from 'react';
 import './Card.css';
 
 const ProfileImage = ({ sprites }) => {
-    const { front_shiny } = sprites;
+    const { front_default, front_shiny } = sprites;
+
+    const [imageIndex, setImageIndex] = useState(0);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setImageIndex(1 - imageIndex);
+        }, 300);
+
+        return () => {
+            clearInterval(id);
+        }
+    }, [imageIndex])
 
     return (
         <div className="profile-image">
-            <img src={front_shiny} loading="lazy" />
+            <img src={[front_default, front_shiny][imageIndex]} loading="lazy" />
         </div>
     );
 }

@@ -10,7 +10,6 @@ const initialState = {
 function reducer(state, action) {
     switch(action.type) {
         case 'next':
-            console.log('reducer: ', state.start);
             return { ...state, start: Math.min(state.max, state.start+state.maxPerPage) };
         case 'prev':
             return { ...state, start: Math.max(state.start-state.maxPerPage, 1) }
