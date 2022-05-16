@@ -1,31 +1,38 @@
-import { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
+import { CircularProgress } from "@mui/material";
+import usePageState from "../Hooks/usePageState";
 import fetchData from "../Services/Api"
 import Card from './Card'
+import NavGroup from "./NavGroup";
 
-const Home = ({ id }) => {
+const Home = () => {
     // TODO: move to hook and use reducer
-    const [start, setStart] = useState(1);
-    const [maxPerPage, setMaxPerPage] = useState(10);
+    const { start, maxPerPage, loading, finishLoading, next, prev, } = usePageState();
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getPokemons = async () => {
             const [pokemons, types] = await fetchData(start, maxPerPage);
             setData(pokemons);
-            setLoading(false)
+            finishLoading();
         }
 
         getPokemons();
-    }, [id, start, maxPerPage]);
+    }, [start, maxPerPage]);
 
     const renderCards = useCallback(() => {
         return data.map(pokemon => <Card key={pokemon.id} pokemon={pokemon} />)
     }, [data]);
 
-    return (!loading && <div className="group">
-        {renderCards()}
-    </div>);
+    if(loading) {
+        return <CircularProgress />;
+    }
+
+    return (!loading && <React.Fragment><div className="group">
+            {renderCards()}
+        </div>
+        <NavGroup next={next} prev={prev} />
+    </React.Fragment>);
 }
 
 export default Home;
