@@ -20,3 +20,13 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.pokemon .name {
+    margin: 0 auto;
+}
+
+.pokemon .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

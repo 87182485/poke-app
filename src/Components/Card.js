@@ -23,6 +23,12 @@ const ProfileImage = ({ sprites }) => {
     );
 }
 
+const Name = ({ name }) => {
+    return (<h4 className='name'>
+        {name}
+    </h4>)
+};
+
 const TypeGroup = ({ types }) => {
     return (
         <div className='types'>
@@ -32,12 +38,17 @@ const TypeGroup = ({ types }) => {
 }
 
 const Card = ({ pokemon }) => {
-    const { sprites, types } = pokemon;
+    const { sprites, types, name } = pokemon;
     return (
         <div className="pokemon">
             <div className="top">
-                <TypeGroup types={types} />
-                <ProfileImage sprites={sprites} />
+                <div class='left'>
+                    <Name name={name} />
+                    <TypeGroup types={types} />
+                </div>
+                <div class="right">
+                    <ProfileImage sprites={sprites} />
+                </div>
             </div>
         </div>
     );
