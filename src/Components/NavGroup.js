@@ -3,7 +3,6 @@ import { Button } from "@mui/material";
 
 const NavGroup = ({ next, prev, disableNext, disablePrev }) => {
     const onNext = useCallback(() => {
-        console.log('run');
         next();
     }, [next])
 

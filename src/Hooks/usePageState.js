@@ -2,7 +2,7 @@ import { useCallback, useReducer } from "react"
 
 const initialState = {
     start: 1,
-    maxPerPage: 10,
+    maxPerPage: 16,
     max: Number.MAX_VALUE,
     loading: true,
 }
