@@ -8,17 +8,17 @@ const initialState = {
 }
 
 function reducer(state, action) {
-    switch(action.type) {
+    switch (action.type) {
         case 'next':
-            return { ...state, start: Math.min(state.max, state.start+state.maxPerPage) };
+            return { ...state, loading: true, start: Math.min(state.max, state.start + state.maxPerPage) };
         case 'prev':
-            return { ...state, start: Math.max(state.start-state.maxPerPage, 1) }
+            return { ...state, loading: true, start: Math.max(state.start - state.maxPerPage, 1) }
         case 'start':
             return { ...state, loading: true }
         case 'finish':
-            return { ...state, loading: false }    
+            return { ...state, loading: false }
         default:
-            return {...state}
+            return { ...state }
     }
 }
 
@@ -39,7 +39,7 @@ const usePageState = () => {
 
     return {
         start: state.start,
-        maxPerPage: state.maxPerPage, 
+        maxPerPage: state.maxPerPage,
         loading: state.loading,
         finishLoading,
         next,

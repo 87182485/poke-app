@@ -1,32 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import useProfileImage from '../Hooks/useProfileImage';
 import './Card.css';
 
 const ProfileImage = ({ sprites }) => {
-    const [side, setSide] = useState('front');
-
-    const images = useMemo(() => {
-        return [sprites[`${side}_default`], sprites[`${side}_shiny`]];
-    }, [side]);
-
-    const onImageClick = useCallback(() => {
-        setSide(side === 'front' ? 'back' : 'front');
-    }, [side])
-
-    const [imageIndex, setImageIndex] = useState(0);
-
-    useEffect(() => {
-        const id = setInterval(() => {
-            setImageIndex(1 - imageIndex);
-        }, 300);
-
-        return () => {
-            clearInterval(id);
-        }
-    }, [imageIndex])
+    const { url, onImageClick } = useProfileImage(sprites);
 
     return (
         <div className="profile-image">
-            <img src={images[imageIndex]} loading="lazy" onClick={onImageClick} />
+            <img src={url} loading="lazy" onClick={onImageClick} />
         </div>
     );
 }
