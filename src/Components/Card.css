@@ -3,7 +3,7 @@
     flex-direction: column;
     margin: 0 auto;
     width: 20rem;
-    border: 0.3rem firebrick solid;
+    border: 0.2rem firebrick solid;
     border-radius: 0.5rem;
 }
 
@@ -29,4 +29,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.nav-group {
+    margin: 0.3rem;
 }

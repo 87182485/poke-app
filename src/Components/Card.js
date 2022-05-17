@@ -1,8 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import './Card.css';
 
 const ProfileImage = ({ sprites }) => {
-    const { front_default, front_shiny } = sprites;
+    const [side, setSide] = useState('front');
+
+    const images = useMemo(() => {
+        return [sprites[`${side}_default`], sprites[`${side}_shiny`]];
+    }, [side]);
+
+    const onImageClick = useCallback(() => {
+        setSide(side === 'front' ? 'back' : 'front');
+    }, [side])
 
     const [imageIndex, setImageIndex] = useState(0);
 
@@ -18,7 +26,7 @@ const ProfileImage = ({ sprites }) => {
 
     return (
         <div className="profile-image">
-            <img src={[front_default, front_shiny][imageIndex]} loading="lazy" />
+            <img src={images[imageIndex]} loading="lazy" onClick={onImageClick} />
         </div>
     );
 }
