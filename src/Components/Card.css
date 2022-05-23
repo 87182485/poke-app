@@ -3,8 +3,9 @@
     flex-direction: column;
     margin: 0 auto;
     width: 20rem;
-    border: 0.2rem firebrick solid;
+    border: 0.2rem transparent solid;
     border-radius: 0.5rem;
+    color: white;
 }
 
 .pokemon .top {
@@ -33,4 +34,10 @@
 
 .nav-group {
     margin: 0.3rem;
+}
+
+.pokemonId {
+    color: #fff;
+    font-size: 2rem;
+    opacity: .3;
 }

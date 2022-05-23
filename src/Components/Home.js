@@ -31,7 +31,7 @@ const Home = () => {
     return (!loading && <React.Fragment><div className="group">
             {renderCards()}
         </div>
-        <NavGroup next={next} prev={prev} />
+        <NavGroup disablePrev={start<=1} next={next} prev={prev} />
     </React.Fragment>);
 }
 

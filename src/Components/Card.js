@@ -1,5 +1,13 @@
 import useProfileImage from '../Hooks/useProfileImage';
 import './Card.css';
+import { color } from '../Constants/colors';
+import DisplayId from './DisplayId';
+
+function getColor(types) {
+    const typeColors = types.map(t => color[t.type.name.toUpperCase()]).filter(t => !!t);
+
+    return typeColors.length === 0 ? color.NORMAL : typeColors[0];
+}
 
 const ProfileImage = ({ sprites }) => {
     const { url, onImageClick } = useProfileImage(sprites);
@@ -26,16 +34,18 @@ const TypeGroup = ({ types }) => {
 }
 
 const Card = ({ pokemon }) => {
-    const { sprites, types, name } = pokemon;
+    const { sprites, types, name, id } = pokemon;
+    const color = getColor(types);
     return (
-        <div className="pokemon">
+        <div className="pokemon" style={{ backgroundColor: color }}>
             <div className="top">
-                <div class='left'>
+                <div className='left'>
                     <Name name={name} />
                     <TypeGroup types={types} />
                 </div>
-                <div class="right">
+                <div className="right">
                     <ProfileImage sprites={sprites} />
+                    <DisplayId id={id} />
                 </div>
             </div>
         </div>

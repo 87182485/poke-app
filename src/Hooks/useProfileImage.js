@@ -24,7 +24,7 @@ const useProfileImage = (sprites) => {
     }, [imageIndex]);
 
     return {
-        url: images[imageIndex],
+        url: images[0], // Disable auto switch
         onImageClick,
     }
 };

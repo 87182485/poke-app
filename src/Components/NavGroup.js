@@ -10,8 +10,8 @@ const NavGroup = ({ next, prev, disableNext, disablePrev }) => {
     const onPrev = useCallback(() => {
         prev();
     }, [prev])
-    return (<div class="nav-group"><ButtonGroup color="secondary">
-        <Button variant="text" onClick={onPrev}>Prev</Button>
+    return (<div className="nav-group"><ButtonGroup color="secondary">
+        <Button variant="text" disabled={disablePrev} onClick={onPrev}>Prev</Button>
         <Button variant="text" onClick={onNext}>Next</Button>
     </ButtonGroup></div>);
 };
